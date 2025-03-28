@@ -9,3 +9,4 @@ datetime
 pydantic
 typing
 pymysql
+psycopg2
