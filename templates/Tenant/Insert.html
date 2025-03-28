@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register New Tenant</title>
+  <style>
+        body {
+        font-family: Monaco;
+        background: linear-gradient(to bottom, #C3E4C7, #5A8C5A);
+        background-attachment: fixed;
+		height: 100vh;
+        line-height: 2.2;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 50px auto;
+        background: #ffffff;
+		padding-bottom: 20px;
+    }
+
+    .container h1 {
+        background: #4CAF50;
+        color: white;
+        padding: 20px;
+        margin: 0;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+    h2{
+        text-align: center; 
+        color: #4CAF50;
+    }
+    form {
+        padding: 20px 30px;
+    }
+
+    form label {
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+
+    form button {
+        width: 45%;
+        padding: 12px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        background: linear-gradient(45deg, #4CAF50, #3a804b);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 50px;
+    }
+    form button:last-child {
+    margin-right: 0;
+    }	
+
+    form button:hover {
+        background: linear-gradient(45deg, #3a804b, #4CAF50);
+    }
+
+    .field {
+        margin: 10px 0; 
+        display: flex; 
+        justify-content: space-between; 
+        border-bottom: 1px solid #eee; 
+    }
+	.field:last-child {
+		border-bottom: none;
+	}
+
+    .field label {
+        font-weight: bold; 
+        color: #555;
+		padding: 0px 0px 0px 115px;
+    }
+
+    .field span {
+        font-weight: normal;
+        color: #777;
+		 padding: 0px 115px 0px 0px;
+    }
+	#tenantDetails{
+		font-family: Arial, sans-serif; 
+		margin: 20px; 
+		padding: 10px,10px,0px,10px; 
+		border: 1px solid #ddd; 
+		border-radius: 8px; 
+		background-color: #f9f9f9;
+	}
+
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register New Tenant</h1>
+
+        <form id="tenantForm">
+           <label for="tenant-first-name">Tenant First Name:</label>
+            <input type="text" id="tenant-first-name" name="tenant-first-name" placeholder="Enter Tenant First Name" required>
+			<label for="tenant-last-name">Tenant Last Name:</label>
+            <input type="text" id="tenant-last-name" name="tenant-last-name" placeholder="Enter Tenant Last Name" required>
+			<label for="tenant-age">Tenant Age:</label>
+            <input type="text" id="tenant-age" name="tenant-age" placeholder="Enter Tenant Age" required>
+			<label for="tenant-gender">Tenant Gender:</label>
+            <input type="text" id="tenant-gender" name="tenant-gender" placeholder="Enter Tenant Gender" required>
+			<label for="tenant-flat-number">Tenant Flat Number:</label>
+            <input type="text" id="tenant-flat-number" name="tenant-flat-number" placeholder="Enter Tenant Flat Number" required>
+            <button type="submit">Submit</button><button type="reset">Reset</button>
+        </form>
+
+        
+            <div id="tenantDetails">
+                <h2>Tenant Details</h2>
+                <div class="field">
+                    <label>Tenant ID:</label> <span id="tenant-id"></span>
+                </div>
+                <div class="field">
+                    <label >Tenant Status:</label> <span id="tenant-status"></span>
+                </div>       
+        </div>
+    </div>
+	
+<script>
+	document.getElementById("tenantForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent form from refreshing the page
+
+    const tenantDetailsDiv = document.getElementById("tenantDetails");
+
+    try {
+        // Replace 'https://your-backend-api.com/endpoint' with your actual backend API URL
+        const response = await fetch(`http://127.0.0.1:8000/tenant-management/tenant-details`, 
+		{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+			body: JSON.stringify({
+			  "tenant-first-name": document.getElementById('tenant-first-name').value,
+			  "tenant-last-name": document.getElementById('tenant-last-name').value,
+			  "tenant-age": document.getElementById('tenant-age').value,
+			  "tenant-gender": document.getElementById('tenant-gender').value,
+			  "tenant-flat-number": document.getElementById('tenant-flat-number').value
+			})
+        });
+        if (!response.ok) {
+			const errorData = await response.json();
+			var desc;
+			if(Array.isArray(errorData.detail) && errorData.detail.length>0)
+			{
+			  desc = errorData.detail[0].msg;
+			}
+			else{
+			  desc = errorData.detail;
+			}
+           
+
+            const errorMessage = document.createElement("div");
+			errorMessage.textContent = `Error: ${response.status}: ${desc}`;
+			errorMessage.style.color = "red";
+			tenantDetailsDiv.innerHTML ="";
+			tenantDetails.appendChild(errorMessage);
+            return;
+        }
+		
+		const successMessage = document.createElement("div");
+		successMessage.textContent = `Registered Succesfully`;
+		successMessage.style.color = "green";
+		tenantDetailsDiv.innerHTML ="";
+		tenantDetails.appendChild(successMessage);
+		
+		const tenantDetailsResp = document.createElement("div");
+		tenantDetailsResp.className = "tenant-response";
+		tenantDetailsResp.innerHTML =`<h2>Tenant Details</h2>
+                <div class="field">
+                    <label>Tenant ID:</label> <span id="tenant-id"></span>
+                </div>
+                <div class="field">
+                    <label >Tenant Status:</label> <span id="tenant-status"></span>`;
+		const data = await response.json();
+		tenantDetails.appendChild(tenantDetailsResp);
+        document.getElementById("tenant-id").textContent = data["tenant-id"]
+		document.getElementById("tenant-status").textContent = data["tenant-status"]
+		
+    } catch (error) {
+        const errorMessage = document.createElement("div");
+		errorMessage.textContent = `Unable to fetch data: ${error.message}`;
+		errorMessage.style.color = "red";
+		tenantDetailsDiv.innerHTML ="";
+		tenantDetails.appendChild(errorMessage);
+    }
+});
+</script>
+
+</body>
+</html>

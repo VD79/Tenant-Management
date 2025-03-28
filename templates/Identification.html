@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Management</title>
+  <style>
+  body {
+        font-family: Monaco;
+        background: linear-gradient(to bottom, #C3E4C7, #5A8C5A);
+        background-attachment: fixed;
+		height: 100vh;
+        line-height: 2.2;
+    }
+
+.tenant-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        background: #ffffff;
+		padding-bottom: 20px;
+    }
+
+.tenant-container h1 {
+    background: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.blocks {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+	grid-template-rows:auto,auto;
+    gap: 10px;
+    margin-top: 20px;
+	padding: 20px;
+}
+.block {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.block a {
+    text-decoration: none;
+}
+
+.block:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.block h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+	color : #4CAF50;
+}
+
+.block p {
+    font-size: 1rem;
+    color: #666;
+}
+  </style>
+</head>
+<body>
+<div class="tenant-container">
+    <h1>Tenant Management</h1>
+    <div class="blocks">
+        <div class="block">
+            <a href="/create-an-identification">
+                <h2>Enter New Identification</h2>
+                <p>Add a new identification to tenant in the system.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/modify-an-identification">
+                <h2>Edit an Identification</h2>
+                <p>Modify an existing identification of a tenant.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/get-all-identifications">
+                <h2>Fetch All Identifications of a tennat</h2>
+                <p>View the list of all identifications.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/delete-an-identification">
+                <h2>Delete an Identification</h2>
+                <p>Remove an identification of tenant from the system.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/modify-an-identification-partially">
+                <h2>Edit Identification Partially</h2>
+                <p>Modify existing identification details.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/authorize-an-identification">
+                <h2>Authorize an Identification</h2>
+                <p>Approve or Reject the Identification.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/get-an-identification">
+                <h2>Fetch Specific Identification</h2>
+                <p>View specific Identification of a tenant.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="javascript:history.back()">
+                <h2>Home Screen</h2>
+                <p>Gets back to home screen.</p>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

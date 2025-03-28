@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Management</title>
+  <style>
+  body {
+        font-family: Monaco;
+        background: linear-gradient(to bottom, #C3E4C7, #5A8C5A);
+        background-attachment: fixed;
+		height: 100vh;
+        line-height: 2.2;
+    }
+
+.tenant-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        background: #ffffff;
+		padding-bottom: 20px;
+    }
+
+.tenant-container h1 {
+    background: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.blocks {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+	grid-template-rows:auto,auto;
+    gap: 10px;
+    margin-top: 20px;
+	padding: 20px;
+}
+.block {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.block a {
+    text-decoration: none;
+}
+
+.block:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.block h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+	color : #4CAF50;
+}
+
+.block p {
+    font-size: 1rem;
+    color: #666;
+}
+  </style>
+</head>
+<body>
+<div class="tenant-container">
+    <h1>Tenant Management</h1>
+    <div class="blocks">
+        <div class="block">
+            <a href="/create-a-tenant">
+                <h2>Register New Tenant</h2>
+                <p>Add a new tenant to the system.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/modify-a-tenant">
+                <h2>Edit Tenant</h2>
+                <p>Modify existing tenant's all details.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/get-all-tenants">
+                <h2>Fetch All Tenants</h2>
+                <p>View the list of all tenants.</p>
+            </a>
+        </div>
+        <div class="block">
+            <a href="/delete-a-tenant">
+                <h2>Delete Tenant</h2>
+                <p>Remove a tenant from the system.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/modify-a-tenant-partially">
+                <h2>Edit Tenant Partially</h2>
+                <p>Modify existing tenant's details.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/authorize-a-tenant">
+                <h2>Authorize Tenant</h2>
+                <p>Approve or Reject the tenant.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="/get-a-tenant">
+                <h2>Fetch Specific Tenant</h2>
+                <p>View specific tenant's details.</p>
+            </a>
+        </div>
+		<div class="block">
+            <a href="javascript:history.back()">
+                <h2>Home Screen</h2>
+                <p>Gets back to home screen.</p>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
