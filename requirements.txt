@@ -2,4 +2,9 @@ fastapi
 uvicorn
 jinja2   
 python-dotenv  
-bcrypt   
+bcrypt
+sqlalchemy
+itsdangerous
+datetime
+pydantic
+typing
