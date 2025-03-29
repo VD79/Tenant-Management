@@ -8,7 +8,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
-import uvicorn,os
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -34,11 +33,6 @@ async def no_cache_middleware(request: Request, call_next):
     response = await call_next(request)
     response.headers["Cache-Control"] = "no-store"
     return response
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # Fetch dynamic port
-    uvicorn.run(app, host="0.0.0.0", port=port)  # Bind to 0.0.0.0
-
 
 def get_current_user(request: Request):
     session_token = request.cookies.get("session_id")
